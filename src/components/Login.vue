@@ -1,0 +1,117 @@
+<template>
+  <div class="login-container red">
+    <div class="login-box">
+      <div class="mb-4">
+        <div class="logo-text border-bottom border-3 border-danger">
+          Faça o seu Login
+        </div>
+      </div>
+      <form  class="text-start">
+        <label for="email">Seu e-mail*</label>
+        <div class="input-group">
+          <input
+            id="email"
+            type="text"
+            class="form-control"
+            required
+            v-model="email"
+          />
+        </div>
+        <label for="email">Sua senha*</label>
+        <div class="input-group">
+          <input 
+          type="password" 
+          class="form-control" 
+          id="password" 
+          required 
+          v-model="senha"
+          />
+        </div>
+        <div class="text-start">
+          <label>
+            <input type="checkbox" v-model="lembrarMe" />
+            Lembrar-me
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          class="btn rounded-pill bg-primary text-white my-3 w-50"
+        >
+          ENTRAR
+        </button>
+        <p>Esqueceu sua senha? <a href="#" target="_blank">Clique aqui!</a></p>
+      </form>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Login",
+  data() {
+    return {
+      lembrarMe: false,
+      email: "",
+      senha: "",
+    };
+  },
+  methods: {
+    handleLogin() {
+      console.log("Login enviado. Lembrar-me:", this.lembrarMe);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.red {
+  background-color: rgb(192, 15, 15);
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background-color: #fff;
+  padding: 60px 45px;
+  border-radius: 30px;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+
+.logo-text {
+  font-size: 25px;
+  text-align: start;
+}
+
+.form-control {
+  border-radius: 0;
+  padding-right: 40px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #000;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+</style>
