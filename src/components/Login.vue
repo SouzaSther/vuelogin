@@ -6,27 +6,27 @@
           Faça o seu Login
         </div>
       </div>
-      <form  class="text-start">
+      <form class="text-start" @submit.prevent="handleLogin">
         <label for="email">Seu e-mail*</label>
         <div class="input-group">
           <input
             id="email"
             type="text"
             class="form-control"
-            required
             v-model="email"
           />
         </div>
-        <label for="email">Sua senha*</label>
+
+        <label for="password">Sua senha*</label>
         <div class="input-group">
-          <input 
-          type="password" 
-          class="form-control" 
-          id="password" 
-          required 
-          v-model="senha"
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            v-model="senha"
           />
         </div>
+
         <div class="text-start">
           <label>
             <input type="checkbox" v-model="lembrarMe" />
@@ -40,6 +40,10 @@
         >
           ENTRAR
         </button>
+
+        <!-- Mensagem de erro -->
+        <p v-if="errorMessage" class="text-danger">{{ errorMessage }}</p>
+
         <p>Esqueceu sua senha? <a href="#" target="_blank">Clique aqui!</a></p>
       </form>
     </div>
@@ -54,16 +58,21 @@ export default {
       lembrarMe: false,
       email: "",
       senha: "",
+      errorMessage: "",
     };
   },
   methods: {
     handleLogin() {
-      console.log("Login enviado. Lembrar-me:", this.lembrarMe);
+      if (this.email && this.senha) {
+        this.errorMessage = ""
+        this.$router.push("/home")
+      } else {
+        this.errorMessage = "Por favor, preencha todos os campos obrigatórios."
+      }
     },
   },
 };
 </script>
-
 <style scoped>
 .red {
   background-color: rgb(192, 15, 15);
