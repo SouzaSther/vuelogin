@@ -75,7 +75,7 @@ export default {
 </script>
 <style scoped>
 .red {
-  background-color: rgb(192, 15, 15);
+  background-color: #ff276f;
 }
 
 .login-container {

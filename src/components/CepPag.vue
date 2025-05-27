@@ -69,7 +69,7 @@ async function buscarEndereco() {
   margin: 50px auto;
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #ec24aa;
+  background-color: #ff276f;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
@@ -96,7 +96,7 @@ input {
 
 button {
   padding: 10px 20px;
-  background-color: #c7007b;
+  background-color: #ff60c2;
   color: white;
   border: none;
   border-radius: 8px;
