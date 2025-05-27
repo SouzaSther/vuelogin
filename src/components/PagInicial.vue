@@ -18,6 +18,9 @@
           <li class="nav-item">
             <router-link class="nav-link text-white" to="/contato">Contato</router-link>
           </li>
+           <li class="nav-item">
+            <router-link class="nav-link text-white" to="/cep"> Consultar Cep</router-link>
+          </li>
         </ul>
       </div>
     </div>
