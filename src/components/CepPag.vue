@@ -23,45 +23,52 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script>
 import axios from "axios";
 
-const cep = ref("");
-const endereco = ref(null);
-const erro = ref("");
+export default {
+  data() {
+    return {
+      cep: "",
+      endereco: null,
+      erro: "",
+    };
+  },
+  methods: {
+    formatarCep() {
+      this.cep = this.cep.replace(/\D/g, "");
+      if (this.cep.length > 5) {
+        this.cep = this.cep.slice(0, 5) + "-" + this.cep.slice(5, 8);
+      }
+    },
+    async buscarEndereco() {
+      this.erro = "";
+      this.endereco = null;
 
-function formatarCep() {
-  cep.value = cep.value.replace(/\D/g, "");
-  if (cep.value.length > 5) {
-    cep.value = cep.value.slice(0, 5) + "-" + cep.value.slice(5, 8);
-  }
-}
-async function buscarEndereco() {
-  erro.value = "";
-  endereco.value = null;
+      const cepLimpo = this.cep.replace(/\D/g, "");
 
-  const cepLimpo = cep.value.replace(/\D/g, "");
+      if (cepLimpo.length !== 8) {
+        this.erro = "CEP inválido";
+        return;
+      }
 
-  if (cepLimpo.length !== 8) {
-    erro.value = "CEP inválido";
-    return;
-  }
-  try {
-    const response = await axios.get(
-      `https://viacep.com.br/ws/${cepLimpo}/json/`
-    );
-    const data = response.data;
+      try {
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${cepLimpo}/json/`
+        );
+        const data = response.data;
 
-    if (data.erro) {
-      erro.value = "CEP não encontrado";
-    } else {
-      endereco.value = data;
-    }
-  } catch (e) {
-    erro.value = "Erro ao buscar o endereço";
-  }
-}
+        if (data.erro) {
+          this.erro = "CEP não encontrado";
+        } else {
+          this.endereco = data;
+        }
+      } catch (e) {
+        this.erro = "Erro ao buscar o endereço";
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>

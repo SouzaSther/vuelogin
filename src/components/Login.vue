@@ -40,10 +40,13 @@
         <p>Esqueceu sua senha? <a href="#" target="_blank">Clique aqui!</a></p>
       </form>
     </div>
+     
   </div>
+ 
 </template>
 
 <script>
+
 export default {
   name: "Login",
   data() {
@@ -75,7 +78,7 @@ export default {
 }
 
 .login-container {
-  height: 100vh;
+  height: 94.1vh;
   display: flex;
   justify-content: center;
   align-items: center;
