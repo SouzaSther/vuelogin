@@ -2,19 +2,12 @@
   <div class="login-container red">
     <div class="login-box">
       <div class="mb-4">
-        <div class="logo-text border-bottom border-3 border-danger">
-          Faça o seu Login
-        </div>
+        <div class="logo-text border-bottom border-3">Faça o seu Login</div>
       </div>
       <form class="text-start" @submit.prevent="handleLogin">
         <label for="email">Seu e-mail*</label>
         <div class="input-group">
-          <input
-            id="email"
-            type="text"
-            class="form-control"
-            v-model="email"
-          />
+          <input id="email" type="text" class="form-control" v-model="email" />
         </div>
 
         <label for="password">Sua senha*</label>
@@ -64,16 +57,19 @@ export default {
   methods: {
     handleLogin() {
       if (this.email && this.senha) {
-        this.errorMessage = ""
-        this.$router.push("/home")
+        this.errorMessage = "";
+        this.$router.push("/home");
       } else {
-        this.errorMessage = "Por favor, preencha todos os campos obrigatórios."
+        this.errorMessage = "Por favor, preencha todos os campos obrigatórios.";
       }
     },
   },
 };
 </script>
 <style scoped>
+.border-bottom {
+  border-bottom: 2px solid #ff276f !important;
+}
 .red {
   background-color: #ff276f;
 }

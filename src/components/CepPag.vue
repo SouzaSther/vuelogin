@@ -24,41 +24,42 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
+import axios from "axios";
 
-const cep = ref('')
-const endereco = ref(null)
-const erro = ref('')
+const cep = ref("");
+const endereco = ref(null);
+const erro = ref("");
 
 function formatarCep() {
-  cep.value = cep.value.replace(/\D/g, '')
+  cep.value = cep.value.replace(/\D/g, "");
   if (cep.value.length > 5) {
-    cep.value = cep.value.slice(0, 5) + '-' + cep.value.slice(5, 8)
+    cep.value = cep.value.slice(0, 5) + "-" + cep.value.slice(5, 8);
   }
 }
-
 async function buscarEndereco() {
-  erro.value = ''
-  endereco.value = null
+  erro.value = "";
+  endereco.value = null;
 
-  const cepLimpo = cep.value.replace(/\D/g, '')
+  const cepLimpo = cep.value.replace(/\D/g, "");
 
   if (cepLimpo.length !== 8) {
-    erro.value = 'CEP inválido'
-    return
+    erro.value = "CEP inválido";
+    return;
   }
-
   try {
-    const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
-    const data = await response.json()
+    const response = await axios.get(
+      `https://viacep.com.br/ws/${cepLimpo}/json/`
+    );
+    const data = response.data;
 
     if (data.erro) {
-      erro.value = 'CEP não encontrado'
+      erro.value = "CEP não encontrado";
     } else {
-      endereco.value = data
+      endereco.value = data;
     }
   } catch (e) {
-    erro.value = 'Erro ao buscar o endereço'
+    erro.value = "Erro ao buscar o endereço";
   }
 }
 </script>
