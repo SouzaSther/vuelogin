@@ -1,19 +1,44 @@
 // src/router/index.ts ou index.js
-import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/components/Login.vue'
-import PagInicial from '@/components/PagInicial.vue'
-import CepPag from '@/components/CepPag.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import MainLayout from "@/layouts/MainLayout.vue";
+import FooterLayout from "@/layouts/FooterLayout.vue";
 
 const routes = [
-  { path: '/', component: Login },
-  { path: '/home', component: PagInicial },
-  { path: '/cep', component: CepPag }
-]
-
+  {
+    path: "/",
+    component: FooterLayout,
+    children: [
+      {
+        path: "",
+        component: () => import("@/components/Login.vue"),
+      },
+    ],
+  },
+  {
+    path: "/home",
+    component: MainLayout,
+    children: [
+      {
+        path: "",
+        component: () => import("@/components/PagInicial.vue"),
+      },
+    ],
+  },
+  {
+    path: "/cep",
+    component: MainLayout,
+    children: [
+      {
+        path: "",
+        component: () => import("@/components/CepPag.vue"),
+      },
+    ],
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
