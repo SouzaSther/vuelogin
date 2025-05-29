@@ -34,6 +34,16 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/crud",
+    component: MainLayout,
+    children: [
+      {
+        path: "",
+        component: () => import("@/components/Crud.vue"),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({

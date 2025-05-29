@@ -16,7 +16,7 @@
             <router-link class="nav-link text-white" to="/sobre">Sobre</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link text-white" to="/contato">Contato</router-link>
+            <router-link class="nav-link text-white" to="/crud">Crud</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link text-white" to="/cep">Consultar Cep</router-link>
